@@ -2,20 +2,13 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 
-import IslandTable from './IslandTable';
-import BuyTable from './BuyTable';
+import AppTabs from './AppTabs';
 
 function App() {
   return (
     <React.Fragment>
-      <IslandTable />
-      <BuyTable />
+      <AppTabs />
     </React.Fragment>
-    // <div className="App">
-    //   <header className="App-header">
-        
-    //   </header>
-    // </div>
   );
 }
 

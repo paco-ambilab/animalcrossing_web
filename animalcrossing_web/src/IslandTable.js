@@ -19,8 +19,8 @@ export default function IslandTable() {
   });
 
   const ISLAND_QUERY = gql`
-    { 
-      islands {
+    query ($search: String) {
+      islands(search: $search) {
       accountInfo {
           user {
             username
@@ -36,10 +36,10 @@ export default function IslandTable() {
     }`
 
   return (
-    <Query query={ISLAND_QUERY}>
+    <Query query={ISLAND_QUERY} variables={{search: ""}}>
       {({ loading, error, data }) => {
           if (loading) return <div>Fetching</div>
-          if (error) return <div>Error</div>
+          if (error) return <div>${error.message}</div>
     
           const islandsToRender = data.islands.map(island => { 
             return(

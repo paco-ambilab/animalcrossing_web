@@ -4,20 +4,16 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
-
+// GraphQL
 import { ApolloProvider } from 'react-apollo'
 import { ApolloClient } from 'apollo-client'
 import { createHttpLink } from 'apollo-link-http'
 import { InMemoryCache } from 'apollo-cache-inmemory'
-
 import { ApolloLink, concat } from 'apollo-link';
+// GraphQL
 
-// const customFetch = (uri, options) => {
-//   const { body, ...newOptions } = options;
-//   const queryString = objectToQuery(JSON.parse(body));
-//   const requestedString = uri + queryString;
-//   return fetch(requestedString, newOptions);
-// };
+import { ThemeProvider } from '@material-ui/core/styles';
+import theme from './theme';
 
 const httpLink = createHttpLink({
   uri: 'http://127.0.0.1:8000/graphql/',
@@ -46,8 +42,14 @@ const client = new ApolloClient({
 
 ReactDOM.render(
   	<ApolloProvider client={client}>
+  	  <meta
+		name="viewport"
+		content="minimum-scale=1, initial-scale=1, width=device-width"
+	  />
 	  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
-	   <App />
+	  <ThemeProvider theme={theme}>
+	    <App />
+	  </ThemeProvider>,
     </ApolloProvider>
   ,
   document.getElementById('root')

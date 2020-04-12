@@ -20,8 +20,8 @@ export default function BuyTable() {
   });
 
   const BUY_QUERY = gql`
-    { 
-      buys(search:"大頭") {
+    query ($search: String) { 
+      buys(search: $search) {
         id
         itemName
         unitPrice
@@ -33,10 +33,10 @@ export default function BuyTable() {
     }`
 
   return (
-    <Query query={BUY_QUERY}>
+    <Query query={BUY_QUERY} variables= {{search: ""}}>
       {({ loading, error, data }) => {
           if (loading) return <div>Fetching</div>
-          if (error) return <div>Error</div>
+          if (error) return <div>${error.message}</div>
     
           const buysToRender = data.buys.map(buy => { 
             return(
